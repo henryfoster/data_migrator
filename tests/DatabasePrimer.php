@@ -25,7 +25,5 @@ class DatabasePrimer
         $metadatas = $entityManager->getMetadataFactory()->getAllMetadata();
         $schemaTool = new SchemaTool($entityManager);
         $schemaTool->updateSchema($metadatas);
-
-        // If you are using the Doctrine Fixtures Bundle you could load these here
     }
 }

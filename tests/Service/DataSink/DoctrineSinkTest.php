@@ -22,7 +22,8 @@ class DoctrineSinkTest extends KernelTestCase
         /** @var EntityManagerInterface $entityManager */
         $entityManager = self::$kernel->getContainer()->get('doctrine.orm.entity_manager');
         $doctrineSink = new DoctrineSink($entityManager);
-        $item = ItemFactory::new()->create([
+        $item = ItemFactory::new()->withoutPersisting()->create([
+            'externalId' => uniqid(),
             'price' => 999.98,
             'name' => 'test item'
         ])->_real();

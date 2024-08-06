@@ -7,6 +7,8 @@ use App\Service\DataProvider\LocalFileProvider;
 use App\Service\Config\ConfigFileLoader;
 use League\Flysystem\Filesystem;
 use League\Flysystem\Local\LocalFilesystemAdapter;
+use Psr\Log\LoggerAwareInterface;
+use Psr\Log\LoggerAwareTrait;
 use Symfony\Component\Console\Attribute\AsCommand;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputArgument;
@@ -19,8 +21,9 @@ use Symfony\Component\Console\Style\SymfonyStyle;
     name: 'app:migrate:data',
     description: 'Add a short description for your command',
 )]
-class MigrateDataCommand extends Command
+class MigrateDataCommand extends Command implements LoggerAwareInterface
 {
+    use LoggerAwareTrait;
     public function __construct(
         private DataMigrationPipeline $dataMigrationPipeline,
         private ConfigFileLoader $configFileLoader
@@ -43,11 +46,16 @@ class MigrateDataCommand extends Command
         $io = new SymfonyStyle($input, $output);
         $configFile = $input->getArgument('configFile');
 
-        $config = $this->configFileLoader->getConfig($configFile);
+        try {
+            $config = $this->configFileLoader->getConfig($configFile);
+            $this->dataMigrationPipeline->migrate($config);
+            $io->success('Data migrated successfully!');
+            return Command::SUCCESS;
+        } catch (\Throwable $exception) {
+            $this->logger->error($exception->getMessage(), ['config' => $configFile]);
+            $io->error($exception->getMessage());
+        }
 
-        $this->dataMigrationPipeline->migrate($config);
-        $io->success('Data migrated successfully!');
-
-        return Command::SUCCESS;
+        return Command::FAILURE;
     }
 }

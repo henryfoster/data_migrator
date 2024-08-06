@@ -30,6 +30,7 @@ As requested the tool was build to work with multiple sources and destinations.
 To add a new source or sink implement the [SinkInterface](https://github.com/henryfoster/data_migrator/blob/main/src/Service/DataSink) or [SourceInterface](https://github.com/henryfoster/data_migrator/tree/main/src/Service/DataSource) and configure them in their respective factories.
 You can add additional configuration options as needed.
 For other sources a Normalizer/Encoder might be needed.
+Logs can be found in `./var/log`.
 
 ### Design Considerations
 The task was defined quite open-ended, so I wanted to share my design considerations.

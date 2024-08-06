@@ -46,7 +46,7 @@ class MigrateDataCommand extends Command
         $config = $this->configFileLoader->getConfig($configFile);
 
         $this->dataMigrationPipeline->migrate($config);
-        $io->success('hurra');
+        $io->success('Data migrated successfully!');
 
         return Command::SUCCESS;
     }

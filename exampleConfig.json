@@ -1,0 +1,12 @@
+{
+  "source" : {
+    "type" : "file",
+    "storage": "local",
+    "format": "xml",
+    "path": "feed.xml"
+  },
+  "sink": {
+    "type": "doctrine",
+    "idPrefix": "coffeeforless"
+  }
+}

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<coverage generated="1722985186">
-  <project timestamp="1722985186">
+<coverage generated="1722985387">
+  <project timestamp="1722985387">
     <file name="/home/runner/work/data_migrator/data_migrator/src/Command/MigrateDataCommand.php">
       <class name="App\Command\MigrateDataCommand" namespace="global">
         <metrics complexity="4" methods="3" coveredmethods="2" conditionals="0" coveredconditionals="0" statements="16" coveredstatements="12" elements="19" coveredelements="14"/>

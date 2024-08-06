@@ -1,4 +1,6 @@
 {
+    "name": "henryfoster/data_migrator",
+    "description": "Data migration tool.",
     "type": "project",
     "license": "proprietary",
     "minimum-stability": "stable",

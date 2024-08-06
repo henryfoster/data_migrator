@@ -22,12 +22,12 @@ Errors should be written to a log file and the code should be tested.
 6. if you created the database via doctrines migration system run `bin/console do:mi:mi`
 
 7. now you can run the command to import the data: `bin/console app:migrate:data exampleConfig.json`
-   exampleConfig.json is the configuration file to configure the data source and sink. It will by default use the feed.xml 
+   [exampleConfig.json](https://github.com/henryfoster/data_migrator/blob/main/exampleConfig.json) is the configuration file to configure the data source and sink. It will by default use the feed.xml 
    file that was attached to the assignment.
 
 ### Extending Functionality
 As requested the tool was build to work with multiple sources and destinations.
-To add a new source or sink implement the SinkInterface or SourceInterface and configure them in their respective factories.
+To add a new source or sink implement the [SinkInterface](https://github.com/henryfoster/data_migrator/blob/main/src/Service/DataSink) or [SourceInterface](https://github.com/henryfoster/data_migrator/tree/main/src/Service/DataSource) and configure them in their respective factories.
 You can add additional configuration options as needed.
 For other sources a Normalizer/Encoder might be needed.
 
